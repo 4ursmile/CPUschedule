@@ -91,7 +91,7 @@ void main(){
             enqueue(p[i]);
             i++;
             continue;
-        } else if (i<n) {
+        } else if (i<n && (p[i].arr == gantt[cG-1].finish ||  size() == 0 ) ) {
             enqueue(p[i]);
             i++;
         }
@@ -111,7 +111,7 @@ void main(){
         for(int j = i+1; j<n; j++)
             if (p[i].pn > p[j].pn)
                 Lswap(&p[i],&p[j]);
-    printf("\nPName\tArrtime\tBurst\tTAT\tRT\tFinish");
+    printf("\nPName\tArrtime\tBurst\tTAT\tRT\tWaiting");
     for(i=0;i<n;i++) {
         printf("\n%d\t%d\t%d\t%d\t%d\t%d",p[i].pn, p[i].arr, p[i].burst, p[i].tat, p[i].rt,  p[i].wt);
         totwt+=p[i].wt;
