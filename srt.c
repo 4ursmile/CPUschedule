@@ -93,7 +93,7 @@ void main(){
             enqueue(p[i]);
             i++;
             continue;
-        } else if (i<n) {
+        } else if (i<n && (p[i].arr == gantt[cG-1].finish ||  size() == 0 )) {
             enqueue(p[i]);
             i++;
         }
@@ -101,7 +101,6 @@ void main(){
         gantt[cG].start = k.arr>gantt[cG-1].finish?k.arr:gantt[cG-1].finish;
         gantt[cG].finish = gantt[cG].start + k.remain;
         gantt[cG].pn = k.pn;
-        Replace(k);
         cG++;
     }
     /// Find roudtrip time, respond time and waiting time base on gantt
@@ -126,7 +125,7 @@ void main(){
         for(int j = i+1; j<n; j++)
             if (p[i].pn > p[j].pn)
                 Lswap(&p[i],&p[j]);
-    printf("\nPName\tArrtime\tBurst\tTAT\tRT\tFinish");
+    printf("\nPName\tArrtime\tBurst\tTAT\tRT\tWT");
     for(i=0;i<n;i++) {
         printf("\n%d\t%d\t%d\t%d\t%d\t%d",p[i].pn, p[i].arr, p[i].burst, p[i].tat, p[i].rt,  p[i].wt);
         totwt+=p[i].wt;
